@@ -1,0 +1,203 @@
+:root {
+    --bg-color: #0f172a; /* Deep elegant blue/slate */
+    --text-color: #e2e8f0;
+    --accent-color: #ffd700; /* Gold */
+    --secondary-accent: #c0c0c0; /* Silver */
+    --frame-border: #ffd700;
+    --nav-bg: rgba(15, 23, 42, 0.95);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: var(--nav-bg);
+    padding: 1.5rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.nav-item {
+    color: var(--text-color);
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 4px; /* subtle interaction area */
+}
+
+.nav-item:hover {
+    color: var(--accent-color);
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    background-color: rgba(255, 255, 255, 0.05); /* subtle hover bg */
+}
+
+/* Main Content Layout */
+.main-container {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5%;
+    height: calc(100vh - 80px); /* Fill remaining height */
+    position: relative;
+}
+
+/* Columns */
+.side-column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-column {
+    flex: 2;
+    text-align: center;
+    z-index: 10;
+    animation: fadeIn 1.5s ease-out;
+}
+
+/* Frames */
+.photo-frame, .logo-frame {
+    width: 250px;
+    height: 350px; /* Portrait for photo */
+    border: 3px double var(--frame-border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px; /* Classic softened corners */
+}
+
+.logo-frame {
+    height: 250px; /* Square/Circular for logo */
+    width: 250px;
+    border-radius: 50%; /* Emblematic style */
+}
+
+.photo-frame:hover, .logo-frame:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+}
+
+.placeholder-text {
+    font-family: 'Cinzel', serif;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Center Content Styling */
+.musical-icon {
+    font-size: 4rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    opacity: 0.8;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    animation: float 3s ease-in-out infinite;
+}
+
+.firm-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--accent-color);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+    display: block;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--secondary-accent);
+    margin-top: 0.5rem;
+    font-family: 'Cinzel', serif;
+}
+
+.tagline {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+
+.musical-divider {
+    height: 2px;
+    width: 150px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    margin: 0 auto;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .firm-name { font-size: 3rem; }
+    .subtitle { font-size: 1.8rem; }
+    .photo-frame { width: 200px; height: 300px; }
+    .logo-frame { width: 200px; height: 200px; }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column-reverse; /* Stack logo/title/photo? Or standard stack */
+        justify-content: center;
+        gap: 2rem;
+        height: auto;
+        padding-top: 2rem;
+    }
+
+    /* Reorder for mobile: Title first, then frames */
+    .center-column { order: 1; margin-bottom: 2rem; }
+    .side-column { order: 2; width: 100%; }
+    
+    .nav-links {
+        gap: 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .firm-name { font-size: 2.5rem; }
+    .subtitle { font-size: 1.5rem; }
+}
